@@ -7,9 +7,19 @@
 
 body {
     background-image:
-    linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)),
+    linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
     url('../assets/img/imagem_funfo_login.png');
+    background-size: cover;
     color: white;
+}
+
+input{
+    background-color: #0B0F14;
+}
+
+.login{
+    display: flex;
+    height: max-content;
 }
 
 .header {
@@ -24,7 +34,6 @@ body {
 
     padding: 10px 100px 15px 0;
 
-    border-bottom: 2px solid #FFFFFF;
 
     background: linear-gradient(90deg,
             #0B0F14 82.65%,
@@ -120,24 +129,31 @@ body {
 
 
 .titulo-login {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     text-align: center;
+    padding-right: 10px;
     margin-bottom: 20px;
 }
 
-.titulo-login h1 {
-    font-size: 40px;
+.titulo-login span {
     color: white;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
-.titulo-login h1::first-line{
+.titulo-login h1{
+    margin-left: -30px;
+    font-size: 35px;
+    width: 350px;
     color: #EF4444;
+    padding-bottom: 15px;
 }
 
 .titulo-login p {
     color: white;
-    font-size: 20px;
     line-height: 18px;
+    font-weight: bold;
 }
 
 
@@ -167,13 +183,14 @@ body {
     border: 2px solid #EF4444;
     padding: 10px;
     border-radius: 8px;
-    background: transparent;
+    /* background: transparent; */
     color: white;
     font-size: 15px;
 }
 
 input::placeholder {
     color: white;
+    
 }
 
 
@@ -279,6 +296,7 @@ input::placeholder {
 .criar-conta p {
     font-size: 13px;
     color: white;
+    font-weight: bold;
 }
 
 
