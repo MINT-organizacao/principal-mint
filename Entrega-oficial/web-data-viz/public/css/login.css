@@ -319,3 +319,217 @@ input::placeholder {
     font-weight: 500;
     font-size: 20px;
 }
+/* ========================================
+   TABLET / TELAS MENORES
+   ======================================== */
+
+@media (max-width: 1000px) {
+
+    .header {
+        padding: 10px 40px 15px 0;
+    }
+
+    .header .logo1,
+    .header .logo2,
+    .header .logo3 {
+        margin-left: 40px;
+    }
+
+    .header .title {
+        margin-left: 50px;
+    }
+
+    .logo-title {
+        margin-left: 250px;
+    }
+
+}
+
+
+/* ========================================
+   CELULAR
+   ======================================== */
+
+@media (max-width: 768px) {
+
+    .header {
+        min-height: 65px;
+        padding: 10px 20px;
+        justify-content: center;
+    }
+
+    .header .logo1 {
+        margin-left: 0;
+        left: 10px;
+        width: 12px;
+        height: 43px;
+    }
+
+    .header .logo2 {
+        margin-left: 0;
+        left: 25px;
+        width: 12px;
+        height: 37px;
+        top: 9px;
+    }
+
+    .header .logo3 {
+        margin-left: 0;
+        left: 40px;
+        width: 12px;
+        height: 43px;
+    }
+
+    .header .title {
+        margin-left: 0;
+        left: 55px;
+        width: 90px;
+        height: 65px;
+        font-size: 32px;
+    }
+
+    .logo-title {
+        display: none;
+    }
+
+
+    .login {
+        width: 90%;
+        max-width: 350px;
+        margin: 50px auto 0;
+    }
+
+
+    .titulo-login {
+        padding-right: 0;
+    }
+
+    .titulo-login h1 {
+        margin-left: 0;
+        width: 100%;
+        font-size: 30px;
+    }
+
+    .titulo-login p {
+        font-size: 14px;
+    }
+
+
+    .formulario {
+        width: 100%;
+    }
+
+
+    .campo input {
+        height: 42px;
+    }
+
+
+    .ou::before,
+    .ou::after {
+        width: 80px;
+    }
+
+}
+
+
+/* ========================================
+   CELULARES PEQUENOS
+   ======================================== */
+
+@media (max-width: 480px) {
+
+    .header {
+        min-height: 60px;
+    }
+
+    .header .logo1 {
+        left: 8px;
+        width: 10px;
+        height: 38px;
+    }
+
+    .header .logo2 {
+        left: 21px;
+        width: 10px;
+        height: 33px;
+        top: 8px;
+    }
+
+    .header .logo3 {
+        left: 34px;
+        width: 10px;
+        height: 38px;
+    }
+
+    .header .title {
+        left: 47px;
+        height: 60px;
+        width: 80px;
+        font-size: 28px;
+    }
+
+
+    .login {
+        width: 92%;
+        margin-top: 35px;
+    }
+
+
+    .titulo-login h1 {
+        font-size: 26px;
+        padding-bottom: 10px;
+    }
+
+    .titulo-login span {
+        font-size: 14px;
+    }
+
+    .titulo-login p {
+        font-size: 13px;
+        line-height: 17px;
+    }
+
+
+    .campo {
+        margin: 7px 0;
+    }
+
+    .campo span {
+        font-size: 13px;
+    }
+
+
+    .campo input {
+        height: 40px;
+        font-size: 14px;
+    }
+
+
+    .botao {
+        font-size: 16px;
+        padding: 9px 20px;
+    }
+
+
+    .ou {
+        margin: 12px 0;
+    }
+
+    .ou::before,
+    .ou::after {
+        width: 50px;
+    }
+
+
+    .google {
+        height: 40px;
+        font-size: 13px;
+    }
+
+
+    .criar-conta {
+        margin-top: 15px;
+    }
+
+}
