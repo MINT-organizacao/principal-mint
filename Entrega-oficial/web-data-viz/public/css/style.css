@@ -29,80 +29,8 @@ body {
             rgba(47, 47, 47, 0) 100%);
 }
 
-.header .logo1 {
-    position: absolute;
-
-    width: 15px;
-    height: 49px;
-
-    left: 6px;
-    top: 4px;
-
-    background: #EF4444;
-
-    border-radius: 10px 0 0 0;
-}
-
-.header .logo2 {
-    position: absolute;
-
-    width: 14px;
-    height: 42px;
-
-    left: 24px;
-    top: 11px;
-
-    background: #EF4444;
-
-    border-radius: 10px 10px 0 0;
-}
-
-.header .logo3 {
-    position: absolute;
-
-    width: 15px;
-    height: 49px;
-
-    left: 41px;
-    top: 4px;
-
-    background: #EF4444;
-
-    border-radius: 0 10px 0 0;
-}
-
-.header .title {
-    position: absolute;
-
-    width: 106px;
-    height: 70px;
-
-    left: 65px;
-    top: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: #FFFFFF;
-
-    font-size: 40px;
-    font-weight: 700;
-}
-
-.logo-title {
-    width: 262px;
-
-    margin-left: 250px;
-
-    display: flex;
-    align-items: center;
-
-    color: #8B8B8B;
-
-    font-size: 20px;
-    line-height: 22px;
-    font-weight: 400;
+.header .logo-sm{
+    display: none;
 }
 
 .header .btn-header {
@@ -141,7 +69,7 @@ body {
     position: relative;
 
     width: 100%;
-    height: 800px;
+    height: 900px;
 
     overflow: hidden;
 
@@ -613,3 +541,390 @@ body {
     font-weight: 400;
 }
 
+/* ================= Tablet ===============*/
+
+@media (max-width: 768px) {
+
+    .header {
+        min-height: 65px;
+        padding: 8px 20px 8px 0;
+    }
+
+    .header .logo-sm{
+        display: block;
+        width: 50%;
+        height: 50%;
+    }
+
+    .header .logo-md{
+        display: none;
+    }
+
+
+    .header .btn-header button {
+        width: 160px;
+        height: 48px;
+        font-size: 14px;
+    }
+
+
+    /* ================= BANNER ================= */
+
+    .banner {
+        height: auto;
+        min-height: 750px;
+
+        background-position: center;
+    }
+
+    .main {
+        width: 100%;
+        min-height: 750px;
+
+        padding: 40px 30px;
+
+        background: linear-gradient(
+            90deg,
+            #0B0F14 70%,
+            rgba(47, 47, 47, 0.3) 100%
+        );
+    }
+
+    .main .main-badge p {
+        padding-top: 70px;
+        font-size: 20px;
+    }
+
+    .main .main-title p {
+        max-width: 650px;
+        margin-top: 25px;
+
+        font-size: 48px;
+        line-height: 50px;
+    }
+
+    .main .main-subtitle p {
+        max-width: 600px;
+        margin-top: 25px;
+
+        font-size: 21px;
+        line-height: 30px;
+    }
+
+    .main .main-btns {
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 35px;
+    }
+
+    .main .main-btns button {
+        height: 60px;
+        font-size: 17px;
+    }
+
+    .main .main-btns .btn-1 {
+        width: 280px;
+    }
+
+    .main .main-btns .btn-2 {
+        width: 180px;
+    }
+
+
+    /* ================= BENEFÍCIOS ================= */
+
+    .beneficios {
+        width: 90%;
+        margin-top: 50px;
+        padding: 30px 25px;
+    }
+
+    .titulo-beneficios h2 {
+        font-size: 25px;
+    }
+
+    .lista-beneficios {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 20px;
+    }
+
+
+    /* ================= EQUIPAMENTO ================= */
+
+    .equipamento {
+        width: 90%;
+        margin-top: 70px;
+
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .imagem-sistema {
+        width: 100%;
+    }
+
+    #img-sistema {
+        width: 80%;
+        max-width: 500px;
+    }
+
+    .conteudo-sistema {
+        width: 100%;
+    }
+
+    .title-principal {
+        font-size: 32px;
+    }
+
+    .descricao-sistema {
+        max-width: 100%;
+    }
+
+
+    /* ================= CONFIABILIDADE ================= */
+
+    .confiabilidade {
+        width: 90%;
+        margin-top: 70px;
+        padding: 30px;
+
+        flex-direction: column;
+        align-items: stretch;
+        gap: 35px;
+    }
+
+    .texto-confiabilidade {
+        width: 100%;
+    }
+
+    .texto-confiabilidade p {
+        max-width: 100%;
+    }
+
+    .metricas {
+        width: 100%;
+    }
+
+    .metrica {
+        min-height: 100px;
+    }
+
+
+    /* ================= FOOTER ================= */
+
+    .footer {
+        width: 90%;
+        margin-top: 60px;
+        padding: 35px 0 40px;
+
+        gap: 50px;
+    }
+
+}
+
+
+/* ================= CELULÁ ===============*/
+
+
+@media (max-width: 480px) {
+
+    /* ================= HEADER ================= */
+
+    .header {
+        padding-right: 15px;
+    }
+
+    .header .logo1 {
+        width: 10px;
+        height: 38px;
+    }
+
+    .header .logo2 {
+        width: 9px;
+        height: 33px;
+        left: 17px;
+    }
+
+    .header .logo3 {
+        width: 10px;
+        height: 38px;
+        left: 31px;
+    }
+
+    .header .title {
+        left: 45px;
+        width: 70px;
+        font-size: 26px;
+    }
+
+    .header .btn-header button {
+        width: 130px;
+        height: 43px;
+        font-size: 12px;
+    }
+
+
+    /* ================= BANNER ================= */
+
+    .banner {
+        min-height: 720px;
+
+        background-position: center;
+    }
+
+    .main {
+        min-height: 720px;
+        padding: 30px 20px;
+
+        background: linear-gradient(
+            90deg,
+            #0B0F14 80%,
+            rgba(47, 47, 47, 0.2) 100%
+        );
+    }
+
+    .main .main-badge p {
+        padding-top: 60px;
+        font-size: 17px;
+    }
+
+    .main .main-title p {
+        margin-top: 20px;
+
+        font-size: 38px;
+        line-height: 41px;
+    }
+
+    .main .main-subtitle p {
+        margin-top: 20px;
+
+        font-size: 18px;
+        line-height: 27px;
+    }
+
+    .main .main-btns {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 30px;
+    }
+
+    .main .main-btns button,
+    .main .main-btns .btn-1,
+    .main .main-btns .btn-2 {
+        width: 100%;
+        height: 56px;
+        font-size: 16px;
+    }
+
+
+    /* ================= BENEFÍCIOS ================= */
+
+    .beneficios {
+        width: 92%;
+        margin-top: 40px;
+        padding: 25px 20px;
+        gap: 25px;
+    }
+
+    .titulo-beneficios h2 {
+        font-size: 22px;
+    }
+
+    .lista-beneficios {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .beneficio {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+
+    .icone-beneficio img {
+        width: 65px;
+        height: 65px;
+    }
+
+
+    /* ================= EQUIPAMENTO ================= */
+
+    .equipamento {
+        width: 92%;
+        margin-top: 60px;
+        gap: 30px;
+    }
+
+    #img-sistema {
+        width: 100%;
+    }
+
+    .conteudo-sistema {
+        gap: 25px;
+    }
+
+    .title-principal {
+        font-size: 28px;
+    }
+
+    .descricao-sistema {
+        font-size: 14px;
+    }
+
+    .parte-baixo span {
+        font-size: 13px;
+    }
+
+
+    /* ================= CONFIABILIDADE ================= */
+
+    .confiabilidade {
+        width: 92%;
+        margin-top: 60px;
+        padding: 25px 20px;
+        gap: 30px;
+    }
+
+    .texto-confiabilidade h2 {
+        font-size: 21px;
+    }
+
+    .texto-confiabilidade p {
+        font-size: 13px;
+    }
+
+    .texto-confiabilidade button {
+        width: 100%;
+    }
+
+    .metricas {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .metrica {
+        width: 100%;
+        min-height: auto;
+        padding: 15px 0;
+
+        border-left: none;
+        border-top: 1px solid #242A32;
+    }
+
+    .metrica:first-child {
+        border-top: none;
+    }
+
+
+    /* ================= FOOTER ================= */
+
+    .footer {
+        width: 92%;
+        margin-top: 50px;
+        padding: 30px 0;
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+}   
