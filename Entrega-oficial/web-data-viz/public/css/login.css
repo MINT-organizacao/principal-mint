@@ -19,7 +19,8 @@ input{
 
 .login{
     display: flex;
-    height: max-content;
+    justify-content: center;
+    height: 100%;
 }
 
 .header {
