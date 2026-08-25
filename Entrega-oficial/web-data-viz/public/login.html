@@ -1,44 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Login</title>
+    <title>MINT</title>
 
-    <script src="./js/sessao.js"></script>
-
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="shortcut icon" href="../public/assets/img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
+    <header class="header">
 
-    <!--Header-->
+        <div class="logo1"></div>
+        <div class="logo2"></div>
+        <div class="logo3"></div>
 
-    <div class="header">
-        <div class="container">
-            <h1 class="titulo">AquaTech</h1>
-            <ul class="navbar">
-                <li>
-                    <a href="index.html">Inicial</a>
-                </li>
-                <li>
-                    <a href="simulador.html">Simulador</a>
-                </li>
-                <li>|</li>
-                <li class="agora">
-                    <a href="#">Login</a>
-                </li>
-                <li>
-                    <a href="cadastro.html">Cadastro</a>
-                </li>
-            </ul>
+        <div class="title">MINT</div>
+
+        <div class="logo-title">
+            Monitoring & Infrastructure Technology
         </div>
-    </div>
+    </header>
 
 
     <div class="login">
@@ -47,49 +32,56 @@
                 <span id="mensagem_erro"></span>
             </div>
         </div>
-        <div class="container">
-            <div class="card card-login">
-                <h2>Olá de volta!</h2>
-                <div class="formulario">
-                    <div class="campo">
-                        <span>E-mail:</span>
-                        <input id="email_input" type="text" placeholder="Login">
-                    </div>
-                    <div class="campo">
-                        <span>Senha:</span>
-                        <input id="senha_input" type="password" placeholder="******">
-                    </div>
-                    <button class="botao" onclick="entrar()">Entrar</button>
-                </div>
-
-                <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
-                </div>
-
-                <div id="div_erros_login"></div>
+        <div class="titulo-login">
+            <h1>Bem-Vindo de volta!</h1>
+            <p>Acesse sua conta para continuar<br>
+                monitorando seus equipamentos.</p>
+        </div>
+            
+        <div class="formulario">
+            <div class="campo">
+                <span>Digite seu email<i class="fa-solid fa-user"></i></span>
+                <input placeholder="Usuário" type="email" id="ipt_email">
             </div>
+            <div class="campo">
+                <span>Digite sua senha<i class="fa-solid fa-lock"></i></span>
+                <input placeholder="senha" type="password" id="ipt_senha">
+            </div>
+
+            <div class="esqueceu">
+                <a class="link" href="#">Esqueceu sua senha?</a>
+            </div>    
+            <button onclick="entrar()" class="botao" type="submit">
+                Entrar
+            </button>
+            <div class="ou">
+                <span>ou</span>
+            </div>
+
+            <button class="google" type="button">
+                <span class="google-letra">G</span>
+                Entrar com o Google
+            </button>
         </div>
+
+        <br>
+        <div class="criar-conta">
+            <p>Não tem conta? <a class="link" href="./cadastro.html">Cadastre-se</a></p>
+        </div>
+
     </div>
 
-    <!--footer inicio-->
-    <div class="footer">
-        <div class="container">
-            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023-2026</h4>
-        </div>
-    </div>
-    <!--footer fim-->
+
 
 </body>
-
 </html>
-
 <script>
      
     function entrar() {
-        aguardar();
+        // aguardar();
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
@@ -128,7 +120,7 @@
                   sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./construcao.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -139,7 +131,7 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    // finalizarAguardar(texto);
                 });
             }
 

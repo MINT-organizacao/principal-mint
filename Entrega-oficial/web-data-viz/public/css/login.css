@@ -1,0 +1,304 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-image:
+    linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)),
+    url('../assets/img/imagem_funfo_login.png');
+    color: white;
+}
+
+.header {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    min-height: 70px;
+
+    padding: 10px 100px 15px 0;
+
+    border-bottom: 2px solid #FFFFFF;
+
+    background: linear-gradient(90deg,
+            #0B0F14 82.65%,
+            rgba(47, 47, 47, 0) 100%);
+}
+
+.header .logo1 {
+    position: absolute;
+    margin-left: 500px;
+
+    width: 15px;
+    height: 49px;
+
+    left: 6px;
+    top: 4px;
+
+    background: #EF4444;
+
+    border-radius: 10px 0 0 0;
+}
+
+.header .logo2 {
+    position: absolute;
+    margin-left: 500px;
+
+    width: 14px;
+    height: 42px;
+
+    left: 24px;
+    top: 11px;
+
+    background: #EF4444;
+
+    border-radius: 10px 10px 0 0;
+}
+
+.header .logo3 {
+    position: absolute;
+    margin-left: 500px;
+
+
+    width: 15px;
+    height: 49px;
+
+    left: 41px;
+    top: 4px;
+
+    background: #EF4444;
+
+    border-radius: 0 10px 0 0;
+}
+
+.header .title {
+    position: absolute;
+
+    width: 106px;
+    height: 70px;
+    margin-left: 510px;
+
+    left: 65px;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #FFFFFF;
+
+    font-size: 40px;
+    font-weight: 700;
+}
+
+
+.logo-title {
+    width: 262px;
+    margin-left: 720px;
+    display: flex;
+    align-items: center;
+    color: #8B8B8B;
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 400;
+}
+
+.login {
+    width: 300px;
+    margin: 70px auto 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.titulo-login {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.titulo-login h1 {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.titulo-login h1::first-line{
+    color: #EF4444;
+}
+
+.titulo-login p {
+    color: white;
+    font-size: 20px;
+    line-height: 18px;
+}
+
+
+
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0;
+}
+
+.campo span {
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.campo input {
+    width: 100%;
+    height: 40px;
+    border: 2px solid #EF4444;
+    padding: 10px;
+    border-radius: 8px;
+    background: transparent;
+    color: white;
+    font-size: 15px;
+}
+
+input::placeholder {
+    color: white;
+}
+
+
+
+.esqueceu {
+    margin-top: 3px;
+    text-align: right;
+}
+
+.link {
+    color: #EF4444;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+
+
+.botao {
+    width: 100%;
+    cursor: pointer;
+    border: 2px solid #EF4444;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    background-color: #EF4444;
+    padding: 10px 25px;
+    margin-top: 12px;
+}
+
+.botao:hover {
+    background-color: #d93636;
+}
+
+
+
+.ou {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+    color: white;
+}
+
+.ou::before {
+    content: "";
+    width: 120px;
+    height: 1px;
+    background-color: #AAAAAA;
+
+    margin-right: 10px;
+}
+
+.ou::after {
+    content: "";
+    width: 120px;
+    height: 1px;
+    background-color: #AAAAAA;
+
+    margin-left: 10px;
+}
+
+
+
+.google {
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    border: 1px solid #AAAAAA;
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.google:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.google-letra {
+    color: #f44242;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+
+
+.criar-conta {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.criar-conta p {
+    font-size: 13px;
+    color: white;
+}
+
+
+
+.alerta_erro {
+    display: flex;
+    justify-content: center;
+}
+
+.card_erro {
+    display: none;
+    background-color: #fff;
+    color: black;
+    width: 230px;
+    border-radius: 4px;
+    border: 3px solid #ED145B;
+    padding: 10px;
+}
+
+.card_erro #mensagem_erro {
+    font-weight: 500;
+    font-size: 20px;
+}
