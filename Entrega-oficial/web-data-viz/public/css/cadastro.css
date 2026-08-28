@@ -9,137 +9,22 @@ body {
     background-color: #030911;
     color: white;
 }
-
-.header {
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+header {
     width: 100%;
-    min-height: 70px;
-
-    padding: 10px 100px 15px 0;
-
-    background: linear-gradient(90deg,
-            #0B0F14 82.65%,
-            rgba(47, 47, 47, 0) 100%);
-}
-.header2 {
-    position: relative;
-    left: 40px;
+    min-height: 80px;
+    padding: 15px 20px;
+    background: linear-gradient(90deg, #0B0F14 82.65%, rgba(47, 47, 47, 0) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
 }
 
-.header .logo1 {
-    position: absolute;
-
-    width: 15px;
-    height: 49px;
-
-    left: 6px;
-    top: -22px;
-
-    background: #EF4444;
-
-    border-radius: 10px 0 0 0;
-}
-
-.header .logo2 {
-    position: absolute;
-
-    width: 14px;
-    height: 42px;
-
-    left: 24px;
-    top: -15px;
-
-    background: #EF4444;
-
-    border-radius: 10px 10px 0 0;
-}
-
-.header .logo3 {
-    position: absolute;
-
-    width: 15px;
-    height: 49px;
-
-    left: 41px;
-    top: -22px;
-
-    background: #EF4444;
-
-    border-radius: 0 10px 0 0;
-}
-
-.header .title {
-    position: absolute;
-
-    width: 106px;
-    height: 70px;
-
-    left: 65px;
-    top: -17;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: #FFFFFF;
-
-    font-size: 40px;
-    font-weight: 700;
-}
-
-.logo-title {
-    width: 262px;
-
-    margin-left: 250px;
-
-    display: flex;
-    align-items: center;
-
-    color: #8B8B8B;
-
-    font-size: 20px;
-    line-height: 22px;
-    font-weight: 400;
-}
-
-.header .btn-header {
-    display: flex;
-
-    padding-right: 0;
-}
-
-.header .btn-header button {
-    width: 270px;
-    height: 62px;
-
-    background: #EF4444;
-
-    border: 1px solid #EF4444;
-    border-radius: 10px;
-
-    color: white;
-
-    font-size: 18px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.header .btn-header button:hover {
-    background-color: #1f0202;
-
-    border-color: red;
+header img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
 }
 
 
@@ -258,6 +143,53 @@ body {
 .final a:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 1024px) {
+    .cadastro {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        position: relative;
+        z-index: 10;
+    }
+
+    .perfil img {
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .cadastro {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .formulario {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .campo {
+        width: 100%;
+        max-width: 370px;
+    }
+
+    .campo input, .botao {
+        width: 100% !important;
+        max-width: 370px !important;
+    }
+
+    .perfil img {
+        margin-right: auto !important;
+        margin-left: auto !important;
+        margin-top: 30px !important;
+    }
+}
+
 
 
 
