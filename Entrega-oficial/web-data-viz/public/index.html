@@ -19,7 +19,7 @@
         <img src="./assets/img/logo.png" class="logo-sm">
 
         <div class="btn-header">
-            <button>Solicitar Demonstração</button>
+            <button onclick="cadastro()">Solicitar Demonstração</button>
         </div>
 
     </header>
@@ -53,7 +53,6 @@
                 <div class="main-btns">
                     <button class="btn-1" onclick="cadastro()">
                         Solicitar Demonstração
-                        <a href="cadastroNovo.html"></a>
                     </button>
 
                     <button class="btn-2">
@@ -173,7 +172,7 @@
                     hardwares de consoles de máquinas de Raio-X.
                 </p>
 
-                <button>
+                <button onclick="cadastro()">
                     Solicitar Demonstração
                     <span>⌄</span>
                 </button>
@@ -264,7 +263,7 @@
     function cadastro(){
         setTimeout(function () {
 
-                          window.location = "cadastroNovo.html";
+                          window.location = "cadastro.html";
 
                         }, 1000);
 
