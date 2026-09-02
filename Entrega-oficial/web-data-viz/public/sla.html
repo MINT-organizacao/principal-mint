@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+  <div class="campo">      
+            <div class="campo">
+                <span>Nome equipamento:</span>
+                <input id="nome_input" type="text" placeholder="Nome do equipamento">
+            </div>
+
+            <div class="campo">
+                <span>Endereço MAC:</span>
+                <input id="mac_input" type="text" placeholder="00:11:22:33:44:55">
+            </div>
+
+            <div class="campo">
+                <span>Empresa:</span>
+                <input id="empresa_input" type="number" placeholder="ID da empresa">
+            </div>
+            <button class="botao" onclick="cadastrar()">Cadastrar equipamento</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+
+    function cadastrar() {
+
+    let nome = nome_input.value;
+    let mac = mac_input.value;
+    let fkEmpresa = empresa_input.value;
+
+        if (nome.trim() == "" || mac.trim() == "" || fkEmpresa.trim() == "") {
+            alert("Preencha todos os campos!");
+            return;
+        }
+
+        fetch("/crud/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeServer: nome,
+                mac_addressServer: mac,
+                fk_empresaServer: fkEmpresa
+            })
+        })
+        .then(function (response) {
+
+            if (response.ok) {
+                console.log("Cadastro realizado!");
+                return response.json();
+
+            } else {
+                throw new Error("Houve um erro ao realizar o cadastro");
+            }
+
+        })
+        .then(function (resultado) {
+
+            console.log("Resposta do servidor:", resultado);
+            alert("Equipamento cadastrado com sucesso!");
+
+        })
+        .catch(function (erro) {
+
+            console.error("Ocorreu um erro ao cadastrar equipamento:", erro);
+
+        });
+    }
+</script>

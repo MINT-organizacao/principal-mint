@@ -17,6 +17,7 @@ var app = express();
 
 var usuarioRouter = require("./src/routes/usuarios");
 var empresaRouter = require("./src/routes/empresas");
+var crudRouter = require("./src/routes/crud");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,6 +27,7 @@ app.use(cors());
 
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresaRouter);
+app.use("/crud", crudRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
