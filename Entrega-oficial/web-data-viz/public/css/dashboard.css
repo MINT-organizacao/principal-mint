@@ -1,0 +1,573 @@
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    /*
+    CORES:
+
+    vermei: #EF4444
+    background: #030911
+
+
+    */
+
+    body{
+        position: relative;
+
+        background-color: #030911;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: #FFF;
+
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        height: 100vh;
+        width: 100vw;
+    }
+
+    aside{
+        height: 100%;
+        width: 20%;
+
+        border-right: 1px solid #EF4444;
+
+        background-color: #10161D;
+    }
+
+    aside .top{
+        width: 100%;
+        height: 20%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    aside .top img{
+        width: 80%;
+        height: 50%;
+    }
+
+    aside .links{
+        width: 100%;
+        height: 60%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    aside .links .link{
+        font-weight: bold;
+        font-size: 2.5vh;
+
+        width: 100%;
+        height: 25%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-bottom:2px solid #030911;
+        transition: all 200ms ease;
+
+        cursor: pointer;
+    }
+
+    aside .links .link:hover{
+        background-color: color-mix(in srgb, #10161D 100%, #fff 5%);
+    }
+
+    aside .btnLogout{
+        width: 100%;
+        height: 20%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    aside .btnLogout button{
+        width: 50%;
+        height: 30%;
+
+        font-size: 2vh;
+        color: #fff;
+
+        border-radius: 20vh;
+
+        background-color: #ef444476;
+        border: 1px solid #EF4444;
+
+        transition: all 200ms ease;
+    }
+
+    aside .btnLogout button:hover{
+        background-color: #EF4444;
+        cursor: pointer;
+    }
+
+    main{
+        height: 100%;
+        width: 80%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        gap: 3vh;
+    }
+
+    main .kpis{
+        width: 95%;
+        height: 25%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    main .kpis .kpi{
+        width: 30%;
+        height: 100%;
+
+        border-radius: 2vh;
+        border: 1px solid #ffffff3b;
+
+        background-color: #10161D;
+        transition: all 200ms ease;
+    }
+
+    main .kpis .kpi:hover{
+        transform: scale(105%);
+    }
+
+    .kpi .kpi-title{
+        width: fit-content;
+        height: 30%;
+
+        padding-left: 1vw;
+
+        font-weight: bold;
+        font-size: 2vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .kpi .kpi-main{
+        padding-left: 1.5vw;
+
+        width: fit-content;
+        height: 50%;
+
+        font-weight: bold;
+        font-size: 5vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    main .list{
+        width: 93%;
+        height: 65%;
+
+        border: 1px solid #ffffff3b;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+
+        gap: 3vh;
+
+        border-radius: 2vh;
+        background-color: #10161D;
+
+        padding: 1vw 1vw;
+    }
+
+    main .list .title{
+        width: 100%;
+        height: fit-content;
+
+        font-weight: bold;
+        font-size: 2.5vh;
+    }
+
+    main .list .top{
+        width: 100%;
+        height: 6%;
+
+        display: flex;
+        justify-content: space-between;
+    }
+
+    main .list .search{
+        width: 25%;
+        height: 100%;
+
+        gap: 0.5vw;
+
+        display: flex;
+        align-items: center;
+
+        padding-left: 0.5vw;
+
+        background-color: #fff;
+        border-radius: 10vh;
+
+        border: 1px solid #EF4444;
+
+    }
+
+    main .list .search input{
+        width: 90%;
+
+        border: none;
+    }
+
+    main .list .search input:focus{
+        outline: none;
+    }
+
+    main .list .search i{
+        color: #EF4444;
+    }
+
+    main .list .opt{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1vw;
+
+        height: 100%;
+        width: 10%;
+    }
+
+    main .list .opt button{
+        background-color: #EF4444;
+        border: 2px solid color-mix(in srgb, #EF4444 50%, #000 100%);
+
+        width: 35%;
+        height: 100%;
+
+        border-radius: 0.5vh;
+    }
+
+    main .list .opt #addBtn{
+        border: #136d34;
+        background-color: #22C55E;
+    }
+
+    main .list .opt #addBtn:hover{
+        border: #062210;
+        background-color: #126932;
+    }
+
+    main .list .opt button i{
+        color: #fff;
+    }
+
+    main .list .opt button:hover{
+        background-color: #832525;
+        border: 2px solid color-mix(in srgb, #EF4444 50%, #000 110%);
+    }
+
+    main .list .itens{
+        width: 95%;
+        height: 90%;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+
+    main .list .itens .item{
+        background-color: #161f29;
+
+        border-radius: 1vh;
+
+        width: 100%;
+        height: 15%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transition: all 200ms ease;
+    }
+
+    main .list .itens .item:hover{
+        transform: scale(105%);
+    }
+
+    .item .wrapper{
+        width: 90%;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .item .wrapper .info{
+        height: 80%;
+
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+
+        gap: 1vh;
+    }
+
+    .item .wrapper .actions{
+        height: 100%;
+        width: 10%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .item .wrapper .actions button{
+        width: 40%;
+        height: 50%;
+
+        border-radius: 1vh;
+
+        background-color: #EF4444;
+        border: 2px solid color-mix(in srgb, #EF4444 50%, #000 100%);
+    }
+
+    .item .wrapper .actions #uptBtn{
+        background-color: #F59E0B;
+        border: 2px solid #D97706;
+    }
+
+    .item .wrapper .actions #uptBtn:hover{
+        background-color: #D97706;
+        border: 2px solid #4d3204;
+    }
+
+    .item .wrapper .actions button i{
+        color: #fff;
+    }
+
+    .item .wrapper .actions button:hover{
+        background-color: #832525;
+        border: 2px solid color-mix(in srgb, #EF4444 50%, #000 110%);
+    }
+
+    .modal{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
+    }
+
+    .modal .wrapper{
+        width: fit-content;
+        min-width: 350px;
+        min-height: 200px;
+        height: fit-content;
+        position: relative;
+        background-color: #10161D;
+        border: 1px solid #ffffff20;
+        border-radius: 2vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3vw;
+        box-shadow: 0 15px 50px #00000080;
+    }
+
+    .modal .wrapper > i{
+        position: absolute;
+        top: 5%;
+        left: auto;
+        right: 5%;
+        color: #ffffff80;
+        font-size: 2.2vh;
+        cursor: pointer;
+        transition: all 200ms ease;
+    }
+
+    .modal .wrapper i:hover{
+        color: #fff;
+        transform: scale(1.15);
+    }
+
+    .modal .wrapper .form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 2vh;
+        font-size: 2vh;
+    }
+
+    .modal .wrapper .form p{
+        font-size: 2.3vh;
+        color: #fff;
+    }
+
+    .modal .wrapper .form .inputs{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 2vh;
+    }
+
+    .modal .wrapper .form .inputs input{
+        width: 250px;
+        box-sizing: border-box;
+        padding: 1vh 1.5vh;
+        height: 4vh;
+        border-radius: 1vh;
+        border: 1px solid #ffffff20;
+        background-color: #161f29;
+        color: #fff;
+        transition: all 200ms ease;
+    }
+
+    .modal .wrapper .form .inputs input::placeholder{
+        color: #ffffff60;
+    }
+
+    .modal .wrapper .form .inputs input:focus{
+        outline: none;
+        border-color: #EF4444;
+        box-shadow: 0 0 0 2px #83252553;
+    }
+
+    .modal .wrapper .form .componentes{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1vh;
+        width: 100%;
+    }
+
+    .modal .wrapper .form .componentes p{
+        color: #ffffff80;
+    }
+
+    .modal .wrapper .form .componentes .choice{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        height: 4vh;
+        gap: 1vh;
+    }
+
+    .modal .wrapper .form .componentes .choice .btns{
+        display: flex;
+        width: 30%;
+        height: 100%;
+        gap: 0.5vh;
+    }
+
+    .modal .wrapper .form .componentes .choice select{
+        padding: 0 1vh;
+        height: 100%;
+        border-radius: 0.7vh;
+        border: 1px solid #ffffff20;
+        background-color: #161f29;
+        color: #fff;
+        outline: none;
+    }
+
+    .modal .wrapper .form .componentes .choice .btns button{
+        width: 50%;
+        height: 100%;
+        border-radius: 0.7vh;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 200ms ease;
+    }
+
+    .modal .wrapper .form .inputs button{
+        width: 100%;
+        height: 4vh;
+        border: none;
+        border-radius: 0.8vh;
+        color: #fff;
+        background-color: #EF4444;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 200ms ease;
+    }
+
+    .modal .wrapper .form .inputs button:hover{
+        background-color: #7f2222;
+    }
+
+    .modal .wrapper .remove{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 2vh;
+    }
+
+    .modal .wrapper .remove .btns{
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1vh;
+    }
+
+    .modal .wrapper .remove .btns button{
+        width: 50%;
+        height: 4vh;
+        border: none;
+        border-radius: 0.8vh;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 200ms ease;
+    }
+
+    .modal .wrapper .remove .btns #rmYes{
+        background-color: #EF4444;
+    }
+
+    .modal .wrapper .remove .btns #rmNo{
+        background-color: transparent;
+        border: 1px solid #EF4444;
+    }
+
+    .modal .wrapper .remove .btns #rmYes:hover{
+        background-color: #a52e2e;
+    }
+
+    .modal .wrapper .remove .btns #rmNo:hover{
+        border: transparent;
+        background-color: #f84444;
+    }
