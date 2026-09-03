@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>MINT</title>
-    <link rel="stylesheet" href="./css/cadastro.css">
-    <link rel="shortcut icon" href="../public/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/cadastro.css">
+    <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-    <header>
-        <img src="assets/img/logo-horizontal.png" alt="">
-    </header>
+<header>
+    <img src="assets/img/logo-horizontal.png" alt="">
+</header>
 
     <main class="main">
         <div class="cadastro">
@@ -23,16 +23,13 @@
             <div class="title">
                 <h1 class="titulo">Crie <span>sua</span> conta</h1>
             </div>
-               <p>Preencha os dados abaixo para começar a <br>monitorar seus equipamentos</p>
+            <div class="main-subtitle">
+                <p>Preencha os dados abaixo para começar a <br>monitorar seus equipamentos</p>
             </div>
             <div class="formulario">
                 <div class="campo">
                     <span>Nome Completo:</span>
                     <input id="nome_input" type="text" placeholder="Nome Completo">
-                </div>
-                <div class="campo">
-                    <span>Código de Ativação:</span>
-                    <input id="codigo_input" type="text" placeholder="Código de Ativação">
                 </div>
                 <div class="campo">
                     <span>Email Corporativo:</span>
@@ -47,7 +44,7 @@
                     <input id="ConfirmarSenha_input" type="password" placeholder="******">
                 </div>
                 <button class="botao" onclick="cadastrar()">Criar Conta</button>
-                <div id="div_mensagem"></div>
+                    <div id="div_mensagem"></div>
                 <div class="final">
                     <p>Já tem uma conta?
                         <a href="./login.html">Entrar</a>
@@ -59,16 +56,15 @@
 
     <script>
 
-        function validarCadastro() {
+        function cadastrar() {
             let nome = nome_input.value;
             let email = email_input.value;
             let senha = senha_input.value;
             let Confirmar = ConfirmarSenha_input.value
-            let codigoAtivacao = codigo_input.value
 
             div_mensagem.innerHTML = "";
 
-            if (nome.trim() == "" || email.trim() == "" || senha.trim() == '' || Confirmar.trim() == '' || codigoAtivacao.trim() == '') {
+            if (nome.trim() == "" || email.trim() == "" || senha.trim() == '' || Confirmar.trim() == '') {
                 div_mensagem.style.color = "white";
                 div_mensagem.innerHTML = "⚠️ Preencha todos os campos para continuar!";
                 return false;
@@ -92,103 +88,44 @@
                 div_mensagem.style.color = "white";
                 div_mensagem.innerHTML = `✅ Cadastro realizado! ${nome}!`;
             }
-
-            return true;
-        }
-        // fetch("/usuarios/cadastrar", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         // crie um atributo que recebe o valor recuperado aqui
-        //         // Agora vá para o arquivo routes/usuario.js
-        //         codigoServer:codigoAtivacao,
-        //         nomeServer: nome,
-        //         emailServer: email,
-        //         senhaServer: senha,
-        //     }),
-        // })
-        //     .then(function (resposta) {
-        //         console.log("resposta: ", resposta);
-
-        //         if (resposta.ok) {
-        //             // let cardErro = document.getElementById("cardErro")
-        //             // cardErro.style.display = "block";
-
-        //             div_mensagem.innerHTML =
-        //                 "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-        //             setTimeout(() => {
-        //                 window.location.href = "./login.html";
-        //             }, "1000");
-
-        //             limparFormulario();
-        //             // finalizarAguardar();
-        //         } else {
-        //             throw "Houve um erro ao tentar realizar o cadastro!";
-        //         }
-        //     })
-        //     .catch(function (resposta) {
-        //         console.log(`#ERRO: ${resposta}`);
-        //         // finalizarAguardar();
-        //     });
-        function cadastrar() {
-            let nome = nome_input.value;
-            let email = email_input.value;
-            let senha = senha_input.value;
-            let Confirmar = ConfirmarSenha_input.value
-            let codigoAtivacao = codigo_input.value
-
-            div_mensagem.innerHTML = "";
-            
-            fetch(`/empresas/buscarEmpresaPorCodigo/${codigoAtivacao}`).then(response => {
-                if (response.ok) {
-                    console.log('entrou')
-                    response.json().then(resposta => {
-                        let fkEmpresa = resposta[0].id
-                        if (validarCadastro()) {
-                            console.log('entrou2')
-                            fetch(`/usuarios/cadastrar`, {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json"
-                                },
-                                body: JSON.stringify({
-                                    emailServer: email,
-                                    senhaServer: senha,
-                                    nomeServer: nome,
-                                    fkEmpresaServer: fkEmpresa
-                                })
-                            }).then(response => {
-                                console.log('entrou3')
-
-                                if (response.ok) {
-                                    console.log("Cadastro realizado")
-                                    alert('Cadastro realizado')
-                                    window.location.href = 'login.html'
-                                } else {
-                                    throw "Houve um erro ao realizar o cadastro"
-                                }
-                            }).catch(erro => {
-                                console.error("Ocorreu um erro ao cadastrar usuario: ", erro)
-                            })
-                        } else {
-                            console.error('Impossível realizar o cadastro, campos inválidos.')
-                        }
-                    })
-
-                } else {
-                    throw 'Houve um erro ao buscar a empresa'
-                }
-            }).catch(erro => {
-                console.error("Ocorreu um erro: ", erro)
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nome,
+                    emailServer: email,
+                    senhaServer: senha,
+                }),
             })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
 
+                    if (resposta.ok) {
+                        // let cardErro = document.getElementById("cardErro")
+                        // cardErro.style.display = "block";
+
+                        div_mensagem.innerHTML =
+                            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                        setTimeout(() => {
+                            window.location.href = "./login.html";
+                        }, "1000");
+
+                        limparFormulario();
+                        // finalizarAguardar();
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                    // finalizarAguardar();
+                });
 
             return false;
         }
-
-
-    </script>    <div class="main-subtitle">
-         
+    </script>
