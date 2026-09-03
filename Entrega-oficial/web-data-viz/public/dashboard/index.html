@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
+
+    <title>Dashboard</title>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+    />
+
+</head>
+<body>
+    <aside>
+        <div class="top">
+            <img src="../assets/img/logo.png">
+        </div>
+        <div class="links">
+            <div class="link"><span>Home</span></div>
+            <div class="link"><span>Equipamentos</span></div>
+            <div class="link"><span>Relatórios</span></div>
+            <div class="link"><span>Alertas</span></div>
+        </div>
+        <div class="btnLogout">
+            <button>Sair</button>
+        </div>
+    </aside>
+    <main>
+        <div class="kpis">
+            <div class="kpi">
+                <div class="kpi-title">Máquinas Cadastradas:</div>
+                <div class="kpi-main">0</div>
+            </div>
+            <div class="kpi">
+                <div class="kpi-title">Ativas:</div>
+                <div class="kpi-main">0</div>
+            </div>
+            <div class="kpi">
+                <div class="kpi-title">Inativas:</div>
+                <div class="kpi-main">0</div>
+            </div>
+        </div>
+
+        <div class="list">
+            <div class="title">Máquinas listadas:</div>
+            <div class="top">
+                <div class="search">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" placeholder="Ex: Terminal-02">
+                </div>
+                <div class="opt">
+                    <button><i class="ph ph-funnel"></i></button>
+                    <button onclick="openModal('create')" id="addBtn"><i class="ph ph-plus-circle"></i></button>
+                </div>
+            </div>
+            <div class="itens">
+                <div class="item">
+                    <div class="wrapper">
+                        <div class="info">
+                            <p>Xray01</p>
+                            <p>Ram, CPU, Disco</p>
+                        </div>
+                        <div class="actions">
+                            <button onclick="openModal('update')" id="uptBtn"><i class="ph ph-note-pencil"></i></button>
+                            <button onclick="openModal('remove')"><i class="ph ph-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="create">
+        <div class="wrapper">
+            <i class="ph ph-x" onclick="closeModal('create')"></i>
+            <div class="form">
+                <p style="text-align: center; font-weight: bold;">Preencha todos<br>os campos</p>
+                <div class="inputs">
+                    <input type="text" placeholder="Apelido">
+                    <input type="text" placeholder="Mac Adress">
+                    <div class="componentes">
+                        <p style="font-size: 1.5vh;">Selecione os componentes</p>
+                        <div class="choice">
+                            <select id="addSel">
+                                <option value="cpu">CPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="disco">Disco</option>
+                            </select>
+                            <div class="btns">
+                                <button onclick="addComponente('add')">+</button>
+                                <button onclick="rmComponente('add')">-</button>
+                            </div>
+                        </div>
+                        <p id="addComponent"></p>
+                    </div>
+                    <button onclick="add()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="update">
+        <div class="wrapper">
+            <i class="ph ph-x" onclick="closeModal('update')"></i>
+            <div class="form">
+                <p style="text-align: center; font-weight: bold;">Edite os campos</p>
+                <div class="inputs">
+                    <input type="text" placeholder="Apelido">
+                    <input type="text" placeholder="Mac Adress">
+                    <div class="componentes">
+                        <p style="font-size: 1.5vh;">Selecione os componentes</p>
+                        <div class="choice">
+                            <select id="uptSel">
+                                <option value="cpu">CPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="disco">Disco</option>
+                            </select>
+                            <div class="btns">
+                                <button onclick="addComponente('upt')">+</button>
+                                <button onclick="rmComponente('upt')">-</button>
+                            </div>    
+                        </div>
+                        <p id="uptComponent"></p>
+                    </div>
+                    <button onclick="edit()">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="remove">
+        <div class="wrapper">
+            <i class="ph ph-x" onclick="closeModal('remove')"></i>
+            <div class="remove">
+                <p>Você deseja remover (Item)?</p>
+                <div class="btns">
+                    <button onclick="remove()" id="rmYes">Sim</button>
+                    <button onclick="closeModal('remove')" id="rmNo">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    function openModal(window){
+        let mod = document.getElementById(`${window}`);
+
+        mod.style.display = "flex";
+    }
+    function closeModal(window){
+        let mod = document.getElementById(`${window}`);
+
+        mod.style.display = "none";
+    }
+</script>
