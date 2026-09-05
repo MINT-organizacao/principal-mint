@@ -60,7 +60,7 @@
                 </div>
                 <div class="opt">
                     <button><i class="ph ph-funnel"></i></button>
-                    <button onclick="openModal('create')" id="addBtn"><i class="ph ph-plus-circle"></i></button>
+                    <button onclick="openCreate()" id="addBtn"><i class="ph ph-plus-circle"></i></button>
                 </div>
             </div>
             <div class="itens" id="itens">
@@ -75,31 +75,8 @@
     </div>
 
     <div class="modal" id="update">
-        <div class="wrapper">
-            <i class="ph ph-x" onclick="closeModal('update')"></i>
-            <div class="form">
-                <p style="text-align: center; font-weight: bold;">Edite os campos</p>
-                <div class="inputs">
-                    <input type="text" placeholder="Apelido">
-                    <input type="text" placeholder="Mac Adress">
-                    <div class="componentes">
-                        <p style="font-size: 1.5vh;">Selecione os componentes</p>
-                        <div class="choice">
-                            <select id="uptSel">
-                                <option value="CPU">CPU</option>
-                                <option value="RAM">RAM</option>
-                                <option value="Disco">Disco</option>
-                            </select>
-                            <div class="btns">
-                                <button onclick="addComponente('upt')">+</button>
-                                <button onclick="rmComponente('upt')">-</button>
-                            </div>    
-                        </div>
-                        <p id="uptComponent" style="color: #fff;"></p>
-                    </div>
-                    <button onclick="edit()">Editar</button>
-                </div>
-            </div>
+        <div class="wrapper" id="uptWrapper">
+            
         </div>
     </div>
 
@@ -137,14 +114,18 @@
 
     // abertura/fechamento das janelas modais
 
-    function openUpdate() {
-        mountUpdate()
-        update.style.display = "flex";
+    function openUpdate(id) {
+        mountUpdate(id);
+
+        let div = document.getElementById('update');
+        div.style.display = "flex";
     }
 
     function openCreate(){
         mountCreate();
-        create.style.display = "flex";
+
+        let div = document.getElementById('create')
+        div.style.display = "flex";
     }
 
     function openRemove(mac){
@@ -165,7 +146,7 @@
     // adicionar e remover componentes no equipamento
 
     function addComponente(windowName) {
-        if(!(document.getElementById("addSel") && document.getElementById("uptSel"))) return; 
+        if(!(document.getElementById("addSel") || document.getElementById("uptSel"))) return; 
 
         if (windowName == 'upt') {
             let obj = {
@@ -198,8 +179,49 @@
 
     // requisicao para montar janelas modais (create/update)
 
-    async function mountUpdate() {
+    async function mountUpdate(id) {
         
+        let equip = {};
+
+        for(let i = 0; i < equipamentos.length; i++){
+            if(equipamentos[i].id == id) equip = equipamentos[i]; break;
+        }
+
+        let txt = '';
+
+        for(let j = 0; j < equip.componentes.length; j++){
+            txt += `${equip.componentes[j].nome_comp}: ${parseInt(equip.componentes[j].limite_maximo)} <br>`;
+            uptComponentes.push(equip.componentes[j]);
+        }
+
+        let html = `
+            <i class="ph ph-x" onclick="closeModal('update')"></i>
+            <div class="form">
+                <p style="text-align: center; font-weight: bold;">Edite os campos</p>
+                <div class="inputs">
+                    <input type="text" placeholder="Apelido" value="${equip.nome_equipamento}" id="uptInNome">
+                    <input type="text" placeholder="Mac Adress" value="${equip.mac_address}" id="uptInMac">
+                    <div class="componentes">
+                        <p style="font-size: 1.5vh;">Selecione os componentes</p>
+                        <div class="choice">
+                            <select id="uptSel">
+                                <option value="CPU">CPU</option>
+                                <option value="RAM">RAM</option>
+                                <option value="Disco">Disco</option>
+                            </select>
+                            <div class="btns">
+                                <button onclick="addComponente('upt')">+</button>
+                                <button onclick="rmComponente('upt')">-</button>
+                            </div>    
+                        </div>
+                        <p id="uptComponent" style="color: #fff;">${txt}</p>
+                    </div>
+                    <button onclick="update()">Editar</button>
+                </div>
+            </div>
+        `
+
+        uptWrapper.innerHTML = html;
     }
 
     async function mountCreate(){
@@ -239,7 +261,7 @@
             </div>
         `
         
-        createWrapper.innerHTML += html;
+        createWrapper.innerHTML = html;
     }
     
     // 
@@ -258,14 +280,14 @@
             }
 
             let html = `
-                <div class="item">
+                <div class="item" id="${equipamentos[i].id}">
                     <div class="wrapper">
                         <div class="info">
                             <p>${equipamentos[i].nome_equipamento}</p>
                             <p>${txt}</p>
                         </div>
                         <div class="actions">
-                            <button onclick="openUpdate()" id="uptBtn"><i class="ph ph-note-pencil"></i></button>
+                            <button onclick="openUpdate(${equipamentos[i].id})" id="uptBtn"><i class="ph ph-note-pencil"></i></button>
                             <button onclick="openRemove('${equipamentos[i].mac_address}')"><i class="ph ph-trash"></i></button>
                         </div>
                     </div>
@@ -348,7 +370,26 @@
     }
 
     async function update() {
-        
+        try {
+            let res = await fetch('/', {
+                method: "PUT",
+                headers: {
+                    "Content-type":"application/json"
+                },
+                body: {
+                    nome: uptInNome.value,
+                    mac_address: uptInMac,
+                    fk_empresa: sessionStorage.getItem("ID_EMPRESA")
+                }
+            })
+
+            let data = await res.json()
+
+            
+
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     async function remover(mac) {

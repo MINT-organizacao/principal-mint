@@ -8,7 +8,7 @@ router.post("/cadastrar", function (req, res) {
     equipamentoController.cadastrar(req, res);
 })
 
-router.post("/atualizar", function (req, res) {
+router.put("/atualizar", function (req, res) {
     equipamentoController.atualizar(req, res);
 });
 

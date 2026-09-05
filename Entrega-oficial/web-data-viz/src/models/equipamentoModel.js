@@ -37,6 +37,13 @@ function atualizar(fk_empresa, mac_address, nome_equipamento){
 
 }
 
+function atualizarEquipComp(fk_equipamento, fk_componente, limite){
+    var instrucaoSql = `
+        UPDATE equip_comp
+            SET 
+    `;
+}
+
 function listar(fkEmpresa) {
     console.log("function listar():");
     var instrucaoSql = `SELECT id,fk_empresa,mac_address,nome_equipamento FROM equipamento WHERE fk_empresa = ${fkEmpresa};
@@ -54,7 +61,7 @@ function bucarCompPorId(id){
 }
 
 function buscarCompPorEquip(id){
-    var instrucaoSql = `SELECT c.id, c.nome_comp FROM equip_comp e JOIN componente_monitorado c ON c.id = e.fk_componente WHERE e.fk_equipamento = ${id};
+    var instrucaoSql = `SELECT c.id, c.nome_comp, e.limite_maximo FROM equip_comp e JOIN componente_monitorado c ON c.id = e.fk_componente WHERE e.fk_equipamento = ${id};
 `;
 
     return database.executar(instrucaoSql);

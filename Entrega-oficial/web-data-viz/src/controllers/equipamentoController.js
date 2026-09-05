@@ -38,9 +38,9 @@ function cadastrar(req, res) {
 
 function atualizar(req, res){
      // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var nome_equipamento = req.body.nomeServer;
-    var mac_address = req.body.mac_addressServer;
-    var fk_empresa = req.body.fk_empresaServer
+    var nome_equipamento = req.body.nome;
+    var mac_address = req.body.mac_address;
+    var fk_empresa = req.body.fk_empresa;
     
 
     // Faça as validações dos valores
