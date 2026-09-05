@@ -1,4 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
+var empresaModel = require("../models/empresaModel");
 
 
 function autenticar(req, res) {
@@ -16,11 +17,14 @@ function autenticar(req, res) {
 
                 if (resultadoAutenticar.length == 1) {
 
-                    res.json({
-                        idUsuario: resultadoAutenticar[0].idUsuario,
+                    let json = {
+                        id: resultadoAutenticar[0].id,
                         nome: resultadoAutenticar[0].nome,
-                        email: resultadoAutenticar[0].email
-                    });
+                        email: resultadoAutenticar[0].email,
+                        fkEmpresa: resultadoAutenticar[0].fk_empresa
+                    }
+                    res.json(json);
+                    console.log(json)
 
                 } else if (resultadoAutenticar.length == 0) {
 
@@ -61,21 +65,28 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, fkEmpresa)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
+        empresaModel.buscarEmpresaPorCodigo(fkEmpresa)
+            .then(response => {
+                if(response.length == 1){
+                    usuarioModel.cadastrar(nome, email, senha, response[0].id)
+                    .then(function (resultado) {
+                        res.json(resultado);
+                    })
+                    .catch(function (erro) {
+                        console.log(erro);
+                        console.log(
+                            "\nHouve um erro ao realizar o cadastro! Erro: ",
+                            erro.sqlMessage
+                        );
+                        res.status(500).json(erro.sqlMessage);
+                    }
             );
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
+            })
     }
 }
 

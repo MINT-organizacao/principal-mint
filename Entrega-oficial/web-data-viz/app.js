@@ -17,7 +17,7 @@ var app = express();
 
 var usuarioRouter = require("./src/routes/usuarios");
 var empresaRouter = require("./src/routes/empresas");
-var crudRouter = require("./src/routes/crud");
+var equipamentoRouter = require("./src/routes/equipamento");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,7 +27,7 @@ app.use(cors());
 
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresaRouter);
-app.use("/crud", crudRouter);
+app.use("/equipamento", equipamentoRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
@@ -36,9 +36,9 @@ app.listen(PORTA_APP, function () {
 | $$$$  /$$$$  | $$  | $$$$| $$   | $$   
 | $$ $$/$$ $$  | $$  | $$ $$ $$   | $$   
 | $$  $$$| $$  | $$  | $$  $$$$   | $$   
-| $$\   $ | $$  | $$  | $$\   $$$   | $$   
-| $$ \/   | $$ /$$$$$$| $$ \  $$    | $$   
+| $$   $ | $$  | $$  | $$\   $$$   | $$   
+| $$   / | $$ /$$$$$$| $$ \   $$   | $$   
 |__/     |__/|______/|__/  \ __/   |__/                                               
-\n\n\n                                                                                                 
-.: http://${HOST_APP}:${PORTA_APP} :.
-    `)});
+\n                                                                            
+      .: http://${HOST_APP}:${PORTA_APP} :.
+`)});

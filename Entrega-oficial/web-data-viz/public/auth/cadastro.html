@@ -36,6 +36,10 @@
                     <input id="email_input" type="text" placeholder="Email Corporativo">
                 </div>
                 <div class="campo">
+                    <span>Código empresa:</span>
+                    <input id="cod_input" type="text" placeholder="Código empresa">
+                </div>
+                <div class="campo">
                     <span>Senha:</span>
                     <input id="senha_input" type="password" placeholder="******">
                 </div>
@@ -61,6 +65,7 @@
             let email = email_input.value;
             let senha = senha_input.value;
             let Confirmar = ConfirmarSenha_input.value
+            let cod = cod_input.value;
 
             div_mensagem.innerHTML = "";
 
@@ -99,6 +104,7 @@
                     nomeServer: nome,
                     emailServer: email,
                     senhaServer: senha,
+                    fkEmpresaServer: cod
                 }),
             })
                 .then(function (resposta) {

@@ -292,6 +292,8 @@
         align-items: center;
         justify-content: flex-start;
         flex-direction: column;
+
+        gap: 1vh;
     }
 
     main .list .itens .item{
@@ -498,6 +500,10 @@
         background-color: #161f29;
         color: #fff;
         outline: none;
+    }
+
+    .modal .wrapper .form .componentes .choice input{
+        width: 30%;
     }
 
     .modal .wrapper .form .componentes .choice .btns button{

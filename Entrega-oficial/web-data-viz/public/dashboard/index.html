@@ -39,15 +39,15 @@
         <div class="kpis">
             <div class="kpi">
                 <div class="kpi-title">Máquinas Cadastradas:</div>
-                <div class="kpi-main">0</div>
+                <div class="kpi-main" id="totalKpi">0</div>
             </div>
             <div class="kpi">
                 <div class="kpi-title">Ativas:</div>
-                <div class="kpi-main">0</div>
+                <div class="kpi-main" id="ativasKpi">0</div>
             </div>
             <div class="kpi">
                 <div class="kpi-title">Inativas:</div>
-                <div class="kpi-main">0</div>
+                <div class="kpi-main" id="inativasKpi">0</div>
             </div>
         </div>
 
@@ -63,49 +63,14 @@
                     <button onclick="openModal('create')" id="addBtn"><i class="ph ph-plus-circle"></i></button>
                 </div>
             </div>
-            <div class="itens">
-                <div class="item">
-                    <div class="wrapper">
-                        <div class="info">
-                            <p>Xray01</p>
-                            <p>Ram, CPU, Disco</p>
-                        </div>
-                        <div class="actions">
-                            <button onclick="openModal('update')" id="uptBtn"><i class="ph ph-note-pencil"></i></button>
-                            <button onclick="openModal('remove')"><i class="ph ph-trash"></i></button>
-                        </div>
-                    </div>
-                </div>
+            <div class="itens" id="itens">
+                
             </div>
         </div>
     </main>
 
     <div class="modal" id="create">
-        <div class="wrapper">
-            <i class="ph ph-x" onclick="closeModal('create')"></i>
-            <div class="form">
-                <p style="text-align: center; font-weight: bold;">Preencha todos<br>os campos</p>
-                <div class="inputs">
-                    <input type="text" placeholder="Apelido">
-                    <input type="text" placeholder="Mac Adress">
-                    <div class="componentes">
-                        <p style="font-size: 1.5vh;">Selecione os componentes</p>
-                        <div class="choice">
-                            <select id="addSel">
-                                <option value="cpu">CPU</option>
-                                <option value="ram">RAM</option>
-                                <option value="disco">Disco</option>
-                            </select>
-                            <div class="btns">
-                                <button onclick="addComponente('add')">+</button>
-                                <button onclick="rmComponente('add')">-</button>
-                            </div>
-                        </div>
-                        <p id="addComponent"></p>
-                    </div>
-                    <button onclick="add()">Enviar</button>
-                </div>
-            </div>
+        <div class="wrapper" id="createWrapper">            
         </div>
     </div>
 
@@ -121,16 +86,16 @@
                         <p style="font-size: 1.5vh;">Selecione os componentes</p>
                         <div class="choice">
                             <select id="uptSel">
-                                <option value="cpu">CPU</option>
-                                <option value="ram">RAM</option>
-                                <option value="disco">Disco</option>
+                                <option value="CPU">CPU</option>
+                                <option value="RAM">RAM</option>
+                                <option value="Disco">Disco</option>
                             </select>
                             <div class="btns">
                                 <button onclick="addComponente('upt')">+</button>
                                 <button onclick="rmComponente('upt')">-</button>
                             </div>    
                         </div>
-                        <p id="uptComponent"></p>
+                        <p id="uptComponent" style="color: #fff;"></p>
                     </div>
                     <button onclick="edit()">Editar</button>
                 </div>
@@ -142,9 +107,9 @@
         <div class="wrapper">
             <i class="ph ph-x" onclick="closeModal('remove')"></i>
             <div class="remove">
-                <p>Você deseja remover (Item)?</p>
+                <p>Você deseja remover mesmo?</p>
                 <div class="btns">
-                    <button onclick="remove()" id="rmYes">Sim</button>
+                    <button id="rmYes">Sim</button>
                     <button onclick="closeModal('remove')" id="rmNo">Não</button>
                 </div>
             </div>
@@ -153,14 +118,259 @@
 </body>
 </html>
 <script>
-    function openModal(window){
-        let mod = document.getElementById(`${window}`);
+    let uptComponentes = [];
+    let addComponentes = [];
+    let equipamentos = [];
 
-        mod.style.display = "flex";
+    // verifica se está logado
+
+    if (sessionStorage.getItem("ID_USUARIO") == null) {
+        window.location = '../';
     }
-    function closeModal(window){
-        let mod = document.getElementById(`${window}`);
 
+    // funcão "init" da página
+
+    window.onload = () => {
+        list();
+        getKpis();
+    };
+
+    // abertura/fechamento das janelas modais
+
+    function openUpdate() {
+        mountUpdate()
+        update.style.display = "flex";
+    }
+
+    function openCreate(){
+        mountCreate();
+        create.style.display = "flex";
+    }
+
+    function openRemove(mac){
+        remove.style.display = 'flex';
+
+        rmYes.addEventListener('click', () => {
+            remover(mac);
+            closeModal('remove');
+            location.reload();
+        })
+    }
+
+    function closeModal(windowName) {
+        let mod = document.getElementById(`${windowName}`);
         mod.style.display = "none";
     }
+
+    // adicionar e remover componentes no equipamento
+
+    function addComponente(windowName) {
+        if(!(document.getElementById("addSel") && document.getElementById("uptSel"))) return; 
+
+        if (windowName == 'upt') {
+            let obj = {
+                id: uptSel.value,
+                limite: uptLim.value
+            }
+            if (uptComponentes.some(comp => comp.id === obj.id)) return;
+            uptComponentes.push(obj);
+            uptComponent.innerHTML += uptSel.options[uptSel.selectedIndex].dataset.nome + ": " + obj.limite + "<br>";
+        }        
+
+        let obj = {
+            id: addSel.value,
+            limite: addLim.value
+        }
+        if (addComponentes.some(comp => comp.id === obj.id)) return;
+        addComponentes.push(obj);
+        addComponent.innerHTML += addSel.options[addSel.selectedIndex].dataset.nome + ": " + obj.limite + "<br>";
+    }
+
+    function rmComponente(windowName) {
+        if (windowName == 'upt') {
+            uptComponent.innerHTML = "";
+            uptComponentes = [];
+            return;
+        }
+        addComponentes = [];
+        addComponent.innerHTML = "";
+    }
+
+    // requisicao para montar janelas modais (create/update)
+
+    async function mountUpdate() {
+        
+    }
+
+    async function mountCreate(){
+        let response = await fetch('/equipamento/getAllComponentes');
+        let data = await response.json();
+
+        let opt = ""
+
+        for(let i = 0; i < data.length; i++){
+            opt += `<option value="${data[i].id}" data-nome="${data[i].nome_comp}">${data[i].nome_comp}</option>`
+        }
+        
+
+        let html = `
+            <i class="ph ph-x" onclick="closeModal('create')"></i>
+            <div class="form">
+                <p style="text-align: center; font-weight: bold;">Preencha todos<br>os campos</p>
+                <div class="inputs">
+                    <input type="text" placeholder="Apelido" id="addApelidoIn">
+                    <input type="text" placeholder="Mac Adress" id="addMacAddressIn">
+                    <div class="componentes">
+                        <p style="font-size: 1.5vh;">Selecione os componentes</p>
+                        <div class="choice">
+                            <select id="addSel">
+                                ${opt}
+                            </select>
+                            <input type="text" id="addLim" placeholder="Ex: 70">
+                            <div class="btns">
+                                <button onclick="addComponente('add')">+</button>
+                                <button onclick="rmComponente('add')">-</button>
+                            </div>
+                        </div>
+                        <p id="addComponent" style="color: #fff;"></p>
+                    </div>
+                    <button onclick="create()">Enviar</button>
+                </div>
+            </div>
+        `
+        
+        createWrapper.innerHTML += html;
+    }
+    
+    // 
+
+   function mountList() {
+        const itensContainer = document.getElementById("itens");
+        itensContainer.innerHTML = ""; 
+
+        for (let i = 0; i < equipamentos.length; i++) {
+            let txt = '';
+            
+            if (equipamentos[i].componentes) {
+                for (let j = 0; j < equipamentos[i].componentes.length; j++) {
+                    txt += equipamentos[i].componentes[j].nome_comp + " ";
+                }
+            }
+
+            let html = `
+                <div class="item">
+                    <div class="wrapper">
+                        <div class="info">
+                            <p>${equipamentos[i].nome_equipamento}</p>
+                            <p>${txt}</p>
+                        </div>
+                        <div class="actions">
+                            <button onclick="openUpdate()" id="uptBtn"><i class="ph ph-note-pencil"></i></button>
+                            <button onclick="openRemove('${equipamentos[i].mac_address}')"><i class="ph ph-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            itensContainer.innerHTML += html;
+        }
+    }
+
+    async function list() {
+        await buscarEquip();
+        mountList();
+    }
+    
+    async function buscarCompPorEquip(equipamentosList) {
+        const promises = equipamentosList.map(equip => 
+            fetch(`/equipamento/buscarCompPorEquip/${equip.id}`)
+                .then(response => response.ok ? response.json() : [])
+                .then(data => {
+                    equip.componentes = data;
+                })
+                .catch(err => {
+                    console.error("Erro ao buscar componentes:", err);
+                    equip.componentes = [];
+                })
+        );
+        
+        await Promise.all(promises);
+    }
+
+    async function buscarEquip() {
+        try {
+            const response = await fetch(`/equipamento/listar/${sessionStorage.getItem('ID_EMPRESA')}`);
+            if (response.ok) {
+                equipamentos = await response.json();
+                await buscarCompPorEquip(equipamentos);
+            }
+        } catch (err) {
+            console.error("Erro ao buscar equipamentos:", err);
+        }
+    }
+
+    // requisições para o crud e kpis
+
+    async function create() {
+        try {
+            let nome = addApelidoIn.value;
+            let mac = addMacAddressIn.value;
+
+            let res = await fetch('/equipamento/cadastrar', {
+                method: "POST",
+                headers: {
+                    "Content-type":"application/json"
+                },
+                body:JSON.stringify({
+                        nome: nome,
+                        mac_address: mac,
+                        fk_empresa: sessionStorage.getItem("ID_EMPRESA")
+                })
+            })
+
+            let data = await res.json();
+
+            await fetch('/equipamento/createManyEquipComp', {
+                method: 'POST',
+                headers: {
+                    "Content-type":"application/json",
+                },
+                body:JSON.stringify({
+                    comps: addComponentes,
+                    fk_equipamento: data.insertId
+                })
+            })
+
+            await location.reload();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function update() {
+        
+    }
+
+    async function remover(mac) {
+        await fetch('/equipamento/deletar', {
+            method:"DELETE",
+            headers:{
+                "Content-type":"application/json"
+            },
+            body:JSON.stringify({
+                mac_address: mac,
+                fk_empresa: sessionStorage.getItem("ID_EMPRESA")
+            })
+        })
+    }
+
+    async function  getKpis() {
+        let response = await fetch(`/equipamento/getKpis/${sessionStorage.getItem("ID_EMPRESA")}`);
+        let data =  await response.json();
+
+        totalKpi.innerHTML = data[0].total;
+        ativasKpi.innerHTML = data[0].ativos;
+        inativasKpi.innerHTML = data[0].inativos;
+    }
+
 </script>

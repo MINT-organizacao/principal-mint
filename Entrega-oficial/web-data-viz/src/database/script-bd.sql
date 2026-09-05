@@ -44,7 +44,7 @@ CREATE TABLE equipamento(
     fk_empresa INT,
     mac_address VARCHAR(17) UNIQUE NOT NULL,
     nome_equipamento VARCHAR(100) NOT NULL,
-    CONSTRAINT chk_fk_empresa_maq FOREIGN KEY (fk_empresa) REFERENCES empresa(id) 
+    CONSTRAINT chk_fk_empresa_maq FOREIGN KEY (fk_empresa) REFERENCES empresa(id) ON DELETE CASCADE 
 );
 
 CREATE TABLE componente_monitorado(
@@ -55,9 +55,10 @@ CREATE TABLE componente_monitorado(
 );
 
 CREATE TABLE equip_comp(
-	id INT PRIMARY KEY,
+	id INT PRIMARY KEY AUTO_INCREMENT,
     fk_equipamento INT,
     fk_componente INT,
+    limite_maximo DECIMAL(10,2),
     situacao VARCHAR(100) default 'ativo',
     
     CONSTRAINT chk_fk_equipamento_ec FOREIGN KEY (fk_equipamento) REFERENCES equipamento(id),
@@ -65,22 +66,8 @@ CREATE TABLE equip_comp(
     CONSTRAINT chk_situacao_ec CHECK (situacao in ('ativo','inativo'))
 );
 
-/* CREATE TABLE alertas(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    
-    descricao VARCHAR(255) NOT NULL, 
-    severidade VARCHAR(20) NOT NULL, 
-    
-    data_captura_equipamento DATETIME NOT NULL,
-    recebido_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
-    
-    status_resolucao VARCHAR(20) DEFAULT 'Pendente', 
-
-    CONSTRAINT chk_severidade CHECK (severidade IN ('Alto', 'Critico')),
-    CONSTRAINT chk_status CHECK (status_resolucao IN ('Pendente', 'Resolvido'))
-);
-*/
-
 CREATE USER user_crud IDENTIFIED BY 'Sptech#2026';
 GRANT INSERT, SELECT, UPDATE, DELETE ON mintDB.* TO user_crud;  
 FLUSH PRIVILEGES;
+
+
